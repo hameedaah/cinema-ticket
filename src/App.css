@@ -1,0 +1,125 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.movie-title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table,
+td,
+th {
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.table-body td {
+  padding: 5px;
+}
+
+.ticket-card {
+  margin-bottom: 20px;
+  /* width: 30%; */
+  padding: 10px;
+
+  margin-right: 10px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.main-container {
+  padding: 50px;
+  min-height: 100vh;
+  background: rgb(228, 226, 226);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+td.name {
+  font-weight: 600;
+}
+
+.tickets-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.tickets-btn {
+  width: 20%;
+  margin: 0 auto;
+  padding: 20px 0px 20px 0px;
+  border-radius: 10px;
+  border: none;
+  background: #189234;
+  color: rgb(228, 226, 226);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tickets-btn:active {
+  background: #154d22;
+}
+
+.row.title {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.row-btns {
+  height: 30px;
+  margin-top: 10px;
+  display: flex;
+}
+
+.row-btns button {
+  width: 30px;
+  cursor: pointer;
+}
+
+.row-btns img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.row-btns .text {
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 5px 0px 5px;
+}
