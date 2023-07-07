@@ -10,13 +10,13 @@ const App = () => {
     "Susan Owolabi",
     "John Doe",
   ];
-  
+
   const [movieData, setMovieData] = useState("");
 
   const [movieCounters, setMovieCounters] = useState(() => {
     const initialCounters = [];
     for (let i = 0; i < movies.length; i++) {
-      initialCounters.push(10);
+      initialCounters.push(1);
     }
     return initialCounters;
   });
@@ -29,7 +29,7 @@ const App = () => {
       status: "processing",
     }));
 
-    console.log(data)
+    console.log(data);
 
     const requests = data.map((dataItem) =>
       axios.post(`/api/cinema/book`, dataItem, {
@@ -53,7 +53,35 @@ const App = () => {
       });
   };
 
+  // function makeAPICall(dataItem) {
+  //   return axios.post(
+  //     "https://13a4-102-67-16-25.ngrok-free.app/cinema/book",
+  //     dataItem
+  //   );
+  // }
 
+  // function makeSimultaneousAPICalls() {
+  //   const data = movies.map((movie, index) => ({
+  //     movieTitle: "Extraction 2",
+  //     price: 4000,
+  //     requestedSeats: movieCounters[index],
+  //     status: "processing",
+  //   }));
+
+  //   console.log(data);
+
+  //   const promises = data.map((dataItem) => makeAPICall(dataItem));
+
+  //   Promise.all(promises)
+  //     .then((results) => {
+  //       // Handle the results of the simultaneous API calls
+  //       console.log(results);
+  //     })
+  //     .catch((error) => {
+  //       // Handle error if any of the API calls fail
+  //       console.error("Error in simultaneous API calls:", error);
+  //     });
+  // }
 
   const UserComponent = ({ title, index }) => {
     const counter = movieCounters[index];
@@ -61,7 +89,7 @@ const App = () => {
     const handleIncrement = () => {
       if (counter < 200) {
         const updatedCounters = [...movieCounters];
-        updatedCounters[index] = counter + 10;
+        updatedCounters[index] = counter + 1;
         setMovieCounters(updatedCounters);
       }
     };
@@ -69,7 +97,7 @@ const App = () => {
     const handleDecrement = () => {
       if (counter > 1) {
         const updatedCounters = [...movieCounters];
-        updatedCounters[index] = counter - 10;
+        updatedCounters[index] = counter - 1;
         setMovieCounters(updatedCounters);
       }
     };
@@ -79,7 +107,7 @@ const App = () => {
         <div className="row title">{title}</div>
         <hr></hr>
         <div className="row-btns">
-          <button onClick={handleDecrement} disabled={counter <= 10}>
+          <button onClick={handleDecrement} disabled={counter <= 1}>
             <img
               src="https://cdn-icons-png.flaticon.com/128/43/43625.png"
               alt="decrease"
