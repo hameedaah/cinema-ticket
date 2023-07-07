@@ -4,7 +4,7 @@ import "./App.css";
 
 const App = () => {
   const movies = [
-    "Sola Olaniyite",
+    "Sola Olaniyi",
     "James Smith",
     "Ola Bode",
     "Susan Owolabi",
@@ -32,7 +32,7 @@ const App = () => {
     console.log(data)
 
     const requests = data.map((dataItem) =>
-      axios.post("http://161.35.117.1:3000/cinema/book", dataItem, {
+      axios.post(`/api/cinema/book`, dataItem, {
         headers: { "Content-Type": "application/json" },
       })
     );
