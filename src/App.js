@@ -4,7 +4,7 @@ import "./App.css";
 
 const App = () => {
   const movies = [
-    "Sola Olaniyiwa",
+    "Sola Olaniyite",
     "James Smith",
     "Ola Bode",
     "Susan Owolabi",
