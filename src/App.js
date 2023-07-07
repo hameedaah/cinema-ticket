@@ -119,7 +119,7 @@ const App = () => {
                 })}
               </tr>
               <tr className="table-body">
-                <td className="name">Completion time</td>
+                <td className="name">Completion times</td>
                 {movieData.map((item, idx) => {
                   return <td key={idx}>{item.completionTime}</td>;
                 })}
