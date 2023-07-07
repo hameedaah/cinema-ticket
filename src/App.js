@@ -10,7 +10,7 @@ const App = () => {
     "Susan Owolabi",
     "John Doe",
   ];
-
+  
   const [movieData, setMovieData] = useState("");
 
   const [movieCounters, setMovieCounters] = useState(() => {
@@ -54,41 +54,6 @@ const App = () => {
   };
 
 
-  // function makeAPICall() {
-  //   return axios
-  //     .post("http://161.35.117.1:3000/cinema/book")
-  //     .then((response) => response.data)
-  //     .catch((error) => {
-  //       console.error("Error making API call:", error);
-  //       throw error;
-  //     });
-  // }
-
-  // function makeSimultaneousAPICalls() {
-  //   const numberOfCalls = 5; // Define the number of simultaneous calls
-
-  //   const promises = Array.from({ length: numberOfCalls }, () => makeAPICall());
-
-  //   Promise.all(promises)
-  //     .then((results) => {
-  //       // Handle the results of the simultaneous API calls
-  //       console.log(results);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error if any of the API calls fail
-  //       console.error("Error in simultaneous API calls:", error);
-  //     });
-  // }
-
-  // function MyComponent() {
-  //   return (
-  //     <div>
-  //       <button onClick={makeSimultaneousAPICalls}>
-  //         Make Simultaneous API Calls
-  //       </button>
-  //     </div>
-  //   );
-  // }
 
   const UserComponent = ({ title, index }) => {
     const counter = movieCounters[index];
