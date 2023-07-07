@@ -4,7 +4,7 @@ import "./App.css";
 
 const App = () => {
   const movies = [
-    "Sola Olaniyi",
+    "Sola Olaniyiwa",
     "James Smith",
     "Ola Bode",
     "Susan Owolabi",
@@ -119,7 +119,7 @@ const App = () => {
                 })}
               </tr>
               <tr className="table-body">
-                <td className="name">Completion times</td>
+                <td className="name">Completion time</td>
                 {movieData.map((item, idx) => {
                   return <td key={idx}>{item.completionTime}</td>;
                 })}
