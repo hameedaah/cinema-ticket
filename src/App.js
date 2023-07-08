@@ -27,7 +27,7 @@ const App = () => {
 
   const handleStoreValue = () => {
     axios
-      .post(`http://161.35.117.1:3000/cinema/set-seat/${maxSeats}`, {
+      .post(`/api/set-seat/${maxSeats}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -75,7 +75,7 @@ const App = () => {
 
   const handleClear = () => {
     axios
-      .get("http://161.35.117.1:3000/cinema/clear", {
+      .get("/api/cinema/clear", {
         headers: {
           "Content-Type": "application/json",
         },
