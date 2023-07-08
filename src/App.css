@@ -46,9 +46,7 @@ table {
 
 .ticket-card {
   margin-bottom: 20px;
-  /* width: 30%; */
   padding: 10px;
-
   margin-right: 10px;
 }
 
@@ -65,6 +63,20 @@ table {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.main-container .input-container {
+  margin-bottom: 10px;
+}
+
+.main-container .label {
+  margin-right: 5px;
+  font-weight: 500;
+}
+
+.main-container input {
+  margin-right: 10px;
+  width: 50px;
+}
+
 td.name {
   font-weight: 600;
 }
@@ -72,7 +84,7 @@ td.name {
 .tickets-btn-container {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-top: 20px;
 }
@@ -87,6 +99,20 @@ td.name {
   color: rgb(228, 226, 226);
   font-size: 16px;
   cursor: pointer;
+}
+
+.tickets-btn.clear{
+  background: rgb(196, 21, 21);
+}
+
+.tickets-btn.clear:active{
+  background: rgb(126, 14, 14);
+}
+
+.seats-btn {
+  width: auto;
+  padding: 3px 10px;
+  border-radius: 0px;
 }
 
 .tickets-btn:active {

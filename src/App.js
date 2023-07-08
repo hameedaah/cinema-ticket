@@ -12,7 +12,7 @@ const App = () => {
   ];
 
   const [movieData, setMovieData] = useState("");
-
+  const [maxSeats, setMaxSeats] = useState("");
   const [movieCounters, setMovieCounters] = useState(() => {
     const initialCounters = [];
     for (let i = 0; i < movies.length; i++) {
@@ -21,7 +21,27 @@ const App = () => {
     return initialCounters;
   });
 
-  const handleClick = () => {
+  const handleInputChange = (e) => {
+    setMaxSeats((max) => (e.target.validity.valid ? e.target.value : max));
+  };
+
+  const handleStoreValue = () => {
+    axios
+      .post(`http://161.35.117.1:3000/cinema/set-seat/${maxSeats}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("res", res.data);
+        setMaxSeats("");
+      })
+      .catch((error) => {
+        console.log("err", error);
+      });
+  };
+
+  const handleBookTicket = () => {
     const data = movies.map((movie, index) => ({
       movieTitle: "Extraction 2",
       price: 4000,
@@ -29,59 +49,67 @@ const App = () => {
       status: "processing",
     }));
 
-    console.log(data);
+    // const requests = data.map((dataItem) =>
+    //   axios.post(`http://161.35.117.1:3000/cinema/book`, dataItem, {
+    //     headers: {},
+    //   })
+    // );
 
-    const requests = data.map((dataItem) =>
-      axios.post(`/api/cinema/book`, dataItem, {
+    // axios
+    //   .all(requests)
+    //   .then((responses) => {
+    //     responses.forEach((response) => {
+    //       allResponses.push(response.data); // Push successful response to array
+    //     });
+    //     setMovieData(allResponses);
+    //     console.log("Booking successful", allResponses);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Booking failed", error);
+    //     const { message, ...newObject } = error.response.data;
+    //     allResponses.push(newObject); // Push error response to array
+    //     setMovieData(allResponses);
+    //     console.log(allResponses);
+    //   });
+
+    const promises = data.map((dataItem) =>
+      axios.post(`api/cinema/book`, dataItem, {
         headers: { "Content-Type": "application/json" },
       })
     );
 
-    const allResponses = [];
-
-    axios
-      .all(requests)
-      .then((responses) => {
-        responses.forEach((response) => {
-          allResponses.push(response.data);
+    Promise.allSettled(promises)
+      .then((results) => {
+        const allResponses = results.map((result) => {
+          console.log(result);
+          if (result.status === "fulfilled") {
+            return result.value.data;
+          } else {
+            return result.reason.response.data;
+          }
         });
         setMovieData(allResponses);
-        console.log("Booking successful", allResponses);
+        console.log("responses", allResponses);
       })
       .catch((error) => {
-        console.log("Booking failed", error);
+        console.log("err", error);
       });
   };
 
-  // function makeAPICall(dataItem) {
-  //   return axios.post(
-  //     "https://13a4-102-67-16-25.ngrok-free.app/cinema/book",
-  //     dataItem
-  //   );
-  // }
-
-  // function makeSimultaneousAPICalls() {
-  //   const data = movies.map((movie, index) => ({
-  //     movieTitle: "Extraction 2",
-  //     price: 4000,
-  //     requestedSeats: movieCounters[index],
-  //     status: "processing",
-  //   }));
-
-  //   console.log(data);
-
-  //   const promises = data.map((dataItem) => makeAPICall(dataItem));
-
-  //   Promise.all(promises)
-  //     .then((results) => {
-  //       // Handle the results of the simultaneous API calls
-  //       console.log(results);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error if any of the API calls fail
-  //       console.error("Error in simultaneous API calls:", error);
-  //     });
-  // }
+  const handleClear = () => {
+    axios
+      .get("http://161.35.117.1:3000/cinema/clear", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("res", res.data);
+      })
+      .catch((error) => {
+        console.log("err", error);
+      });
+  };
 
   const UserComponent = ({ title, index }) => {
     const counter = movieCounters[index];
@@ -128,6 +156,21 @@ const App = () => {
   return (
     <div className="main-container">
       <h1 className="movie-title">Ticket Booking System: Extraction 2</h1>
+      <div className="input-container">
+        <label className="label" htmlFor="maxSeats">
+          Set max seats:
+        </label>
+        <input
+          type="text"
+          id="maxSeats"
+          value={maxSeats}
+          onChange={handleInputChange}
+          pattern="[0-9]*"
+        />
+        <button className="tickets-btn seats-btn" onClick={handleStoreValue}>
+          Submit
+        </button>
+      </div>
       <div className="table-container">
         <table>
           <tr>
@@ -163,12 +206,11 @@ const App = () => {
         </table>
       </div>
       <div className="tickets-btn-container">
-        <button
-          onClick={handleClick}
-          // onClick={makeSimultaneousAPICalls}
-          className="tickets-btn"
-        >
+        <button onClick={handleBookTicket} className="tickets-btn">
           Book Tickets
+        </button>
+        <button onClick={handleClear} className="tickets-btn clear">
+          Clear
         </button>
       </div>
     </div>
