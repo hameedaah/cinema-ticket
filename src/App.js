@@ -49,29 +49,6 @@ const App = () => {
       status: "processing",
     }));
 
-    // const requests = data.map((dataItem) =>
-    //   axios.post(`http://161.35.117.1:3000/cinema/book`, dataItem, {
-    //     headers: {},
-    //   })
-    // );
-
-    // axios
-    //   .all(requests)
-    //   .then((responses) => {
-    //     responses.forEach((response) => {
-    //       allResponses.push(response.data); // Push successful response to array
-    //     });
-    //     setMovieData(allResponses);
-    //     console.log("Booking successful", allResponses);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Booking failed", error);
-    //     const { message, ...newObject } = error.response.data;
-    //     allResponses.push(newObject); // Push error response to array
-    //     setMovieData(allResponses);
-    //     console.log(allResponses);
-    //   });
-
     const promises = data.map((dataItem) =>
       axios.post(`api/cinema/book`, dataItem, {
         headers: { "Content-Type": "application/json" },
