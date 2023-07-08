@@ -50,7 +50,7 @@ const App = () => {
     }));
 
     const promises = data.map((dataItem) =>
-      axios.post(`api/cinema/book`, dataItem, {
+      axios.post(`/api/cinema/book`, dataItem, {
         headers: { "Content-Type": "application/json" },
       })
     );
