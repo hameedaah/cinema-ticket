@@ -27,7 +27,7 @@ const App = () => {
 
   const handleStoreValue = () => {
     axios
-      .post(`/api/set-seat/${maxSeats}`, {
+      .post(`/api/cinema/set-seat/${maxSeats}`, {
         headers: {
           "Content-Type": "application/json",
         },
